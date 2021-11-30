@@ -12,7 +12,7 @@
 
 using namespace std;
 
-//class
+//class definition
 class Name_Value
 {
 public:
@@ -23,7 +23,7 @@ public:
         : name(n), value(val) {}
 };
 
-void print(vector<Name_Value> vec)
+void print(vector<Name_Value> vec) //it didnt let me declare & define later for some reason
 {
     for (int i = 0; i < vec.size(); i++)
     {
@@ -41,18 +41,24 @@ int main(void)
     //while there is input, and noName is not input, and value is equal to 0
     while (cin >> name >> value && name != "NoName" && value == 0)
     {
+        int push = 0;
         //per each while loop iteration, a for loop of the size of the vectors will
         //go through each vector to ensure there are no duplicates
-        for (int i = 0; i < vec.size(); ++i) //while i is less than the vec size
+        for (int i = 0; i < vec.size(); i++) //while i is less than the vec size
         {
             if (name == vec[i].name) //if they're the same, that means it occured twice
             {
                 cout << name << " appears twice\n";
-                continue; //keep the loop going
+                push = 1;
+                break; //break for loop
             }
         }
-        //push back vec
-        vec.push_back(Name_Value(name, value));
+        //push back vec if there were no repeats
+        if (push == 0) 
+        {
+            vec.push_back(Name_Value(name, value));
+        }
+        
     }
 
     //print out the names
